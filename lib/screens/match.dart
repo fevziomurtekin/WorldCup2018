@@ -5,6 +5,19 @@ import 'dart:convert';
 import 'dart:io';
 import '../model/dao_match.dart';
 
+
+Future<List<daoMatch>> fetchMatch(http.Client client) async {
+  final response =
+  await client.get('https://worldcup.sfg.io/matches/today');
+
+  return parseMatch(response.body);
+}
+
+List<daoMatch> parseMatch(String responseBody) {
+  final parsed = json.decode(responseBody).cast<Map<String, dynamic>>();
+  return parsed.map<daoMatch>((json) => daoMatch.fromJson(json)).toList();
+}
+
 class Match extends StatefulWidget{
   @override
   _Match createState() => new _Match();
@@ -17,25 +30,6 @@ class Details{
 class _Match extends State<Match>{
   List<daoMatch> listMatch;
   String s;
-
-  void getData() async{ // verileri asekron çekiyor.
-    listMatch=new List();
-    var url="https://worldcup.sfg.io/matches/today";
-    var response=await http.get(url); // veriyi çekiyoruz.
-    if(response.statusCode==200){
-      s=response.body.toString();
-      print(response.body.toString());
-      //TODO veriyi parselerken hata alınıyor.
-
-      /*listMatch=response.body as List<daoMatch>;*/
-    }
-  }
-
-  @override
-  void initState() {
-    // TODO: implement initState
-    getData();
-  }
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -78,18 +72,57 @@ class _Match extends State<Match>{
               ),)),
       ]),
 
-      body: new Container(
-        padding: new EdgeInsets.all(32.0),
-        child: new Center( // center horizontal=true
-          child: new Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            // center vertical=true.
-            children: <Widget>[
-              new Text(s)
-            ],
-          ),
-        ),
+      body:FutureBuilder<List<daoMatch>>(
+        future: fetchMatch(http.Client()),
+        builder: (context, snapshot) {
+          if (snapshot.hasError) print(snapshot.error);
+
+          return snapshot.hasData
+              ? matchList(matchs: snapshot.data)
+              : Center(child: CircularProgressIndicator());
+        },
       ),
     );
   }
 }
+
+class matchList extends StatelessWidget{
+  final List <daoMatch> matchs;
+  matchList({Key key, this.matchs}) : super(key: key);
+
+  ExpansionPanel _createitem(daoMatch item) {
+    return new ExpansionPanel(
+        headerBuilder: (BuildContext context, bool isExpanded) {
+          return new Container(
+            padding: new EdgeInsets.all(5.0),
+            child: new Text('${item.homeTeam}'),
+          );
+        },
+        body:new Container(
+          padding: new EdgeInsets.all(10.0),
+          child: new Text('Expansion Item'),
+        ),
+        isExpanded:false
+
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: new EdgeInsets.all(32.0),
+      child: new ListView( // listview içine model listimizi atayıp , expansionun içine ise createItem ile oluşturduğumuz. Hello world yazılarını attık.
+        children: <Widget>[
+          new ExpansionPanelList(
+            expansionCallback: (int index, bool isExpanded) {
+            },
+            children: matchs.map(_createitem).toList(),
+          )
+        ],
+      ),
+    );
+  }
+
+
+}
+
