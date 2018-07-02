@@ -95,7 +95,7 @@ class matchList extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: new EdgeInsets.all(32.0),
+      padding: new EdgeInsets.fromLTRB(25.0,15.0,0.0,0.0),
       child:new SizedBox(
         width: double.infinity,
         child: new Column(
@@ -103,6 +103,7 @@ class matchList extends StatelessWidget{
           children: <Widget>[
             new Text(formated.format(now),
             style: TextStyle(
+                fontSize: 20.0,
                 fontWeight: FontWeight.bold,color: Colors.black),),
             new Expanded(
                 child: new ListView.builder(
@@ -124,6 +125,14 @@ class matchList extends StatelessWidget{
                                           color: Colors.black)
                                       )
                                     ],
+                                  ), new Row(
+                                    children: <Widget>[
+                                      new Image.network("http://icons.iconarchive.com/icons/aha-soft/standard-city/256/stadium-icon.png",height: 30.0 ,width:30.0 ,),
+                                      new Padding(padding: EdgeInsets.fromLTRB(10.0,0.0,0.0,0.0)),
+                                      new Text(matchs[index]["location"],style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                      color: Colors.indigo),)
+                                    ],
                                   ), new Column(
                                     children: <Widget>[
                                       new Row(
@@ -131,7 +140,7 @@ class matchList extends StatelessWidget{
                                         children: <Widget>[
                                           new Row(
                                             children: <Widget>[
-                                              new Padding(padding: EdgeInsets.fromLTRB(0.0, 30.0, 0.0, 5.0)),
+                                              new Padding(padding: EdgeInsets.fromLTRB(0.0, 15.0, 0.0, 5.0)),
                                               new Icon(Icons.timer),
                                               new Text(((((matchs[index]["datetime"].toString()).split("T"))[1]).split(":")[0])+":"
                                                   +((((matchs[index]["datetime"].toString()).split("T"))[1]).split(":")[1])+":00",
@@ -145,33 +154,36 @@ class matchList extends StatelessWidget{
                                         ],
                                       )
                                     ],
-                                  ),new Row(
-                                    children: <Widget>[
-                                      new Image.network("http://icons.iconarchive.com/icons/aha-soft/standard-city/256/stadium-icon.png",height: 30.0 ,width:30.0 ,),
-                                      new Padding(padding: EdgeInsets.fromLTRB(10.0,0.0,0.0,0.0)),
-                                      new Text(matchs[index]["location"],style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                      color: Colors.indigo),)
-                                    ],
                                   ),
                                   new Column(
                                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                     children: <Widget>[
                                       new Row(
                                         children: <Widget>[
-                                          new Row(
+                                          new Column(
                                             children: <Widget>[
-                                              new Text(matchs[index]["home_team_country"]),
-                                              new Padding(padding: EdgeInsets.fromLTRB(0.0, 0.0, 5.0, 0.0)),
-                                              new Text(matchs[index]["home_team"]["goals"].toString())
+                                              new Padding(padding: EdgeInsets.fromLTRB(0.0, 10.0, 0.0, 0.0)),
+                                              Image.network(_getCartoon(matchs[index]["home_team"]["code"]),height: 150.0,width: 150.0,),
+                                              new Padding(padding: EdgeInsets.fromLTRB(0.0, 10.0, 0.0, 0.0)),
+                                              new Row(
+                                                children: <Widget>[
+                                                  new Text(matchs[index]["home_team_country"]),
+                                                  new Padding(padding: EdgeInsets.fromLTRB(0.0, 0.0, 5.0, 0.0)),
+                                                ],
+                                              ),
                                             ],
-                                          ),
-                                          new Text(" - "),
-                                          new Row(
+                                          ),new Column(
                                             children: <Widget>[
-                                              new Text(matchs[index]["away_team"]["goals"].toString()),
-                                              new Padding(padding: EdgeInsets.fromLTRB(5.0, 0.0, 0.0, 0.0)),
-                                              new Text(matchs[index]["away_team_country"])
+                                              new Padding(padding: EdgeInsets.fromLTRB(0.0, 10.0, 0.0, 0.0)),
+                                              Image.network(_getCartoon(matchs[index]["away_team"]["code"]),height: 150.0,width: 150.0,),
+                                              new Padding(padding: EdgeInsets.fromLTRB(0.0, 10.0, 0.0, 0.0)),
+                                              new Row(
+                                                children: <Widget>[
+                                                  new Text(matchs[index]["away_team_country"]),
+                                                  new Padding(padding: EdgeInsets.fromLTRB(0.0, 0.0, 5.0, 0.0)),
+
+                                                ],
+                                              ),
                                             ],
                                           ),
                                         ],
@@ -189,6 +201,36 @@ class matchList extends StatelessWidget{
         ),
       ),
     );
+  }
+
+  String _getCartoon(String code) {
+    switch(code){
+      case "BRA":
+        return "https://i.pinimg.com/originals/2a/3b/7a/2a3b7ad397aa17d969543c8bb5ab8ccb.png";
+      case "MEX":
+        return "https://i.pinimg.com/564x/3f/71/e4/3f71e486654bb183d8ee60765d270ac1.jpg";
+      case "BEL":
+        return "https://i.pinimg.com/564x/0c/19/ea/0c19eab28723aa22e48ceb6e484251d6.jpg";
+      case "JPN":
+        return "https://i.pinimg.com/564x/60/51/3f/60513ff09fd45b603059108ecc5f8a99.jpg";
+      case "URU":
+        return "https://i.pinimg.com/564x/2a/1a/58/2a1a5857f36c61b1c895703b42b0beb2.jpg";
+      case "FRA":
+        return "https://i.pinimg.com/originals/9f/a4/47/9fa4472bd94d7fce55690b8e13bd0897.png";
+      case "SWE":
+        return "https://i.pinimg.com/originals/94/a2/37/94a2372a216bf27dc1832ce7e1fd60c7.png";
+      case "CH":
+        return "https://i.pinimg.com/564x/cc/f6/8b/ccf68b0d97babddaa9da138724329d1d.jpg";
+      case "COL":
+        return "https://i.pinimg.com/564x/d0/05/01/d00501bdd4a1aa91c9f5fb6c98a2959d.jpg";
+      case "RUS":
+        return "https://i.pinimg.com/564x/25/d0/aa/25d0aac623237fb43178ee84da9e7574.jpg";
+      case "CRO" :
+        return "https://i.pinimg.com/236x/a1/76/94/a176949b624c5bec51aa0378c48226c2.jpg" ;
+      case "ENG":
+        return "https://i.pinimg.com/originals/04/93/ca/0493cadecfe1d367082f642275c6e35e.png" ;
+    }
+    return "";
   }
 
 
