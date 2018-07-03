@@ -6,7 +6,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="29cd5ade-d95c-41eb-8f97-cd4a7087269f" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/lib/screens/match.dart" afterPath="$PROJECT_DIR$/lib/screens/match.dart" />
     </list>
     <ignored path="$PROJECT_DIR$/.dart_tool/" />
@@ -37,8 +36,8 @@
       <file leaf-file-name="match.dart" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/lib/screens/match.dart">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="392">
-              <caret line="407" column="102" lean-forward="false" selection-start-line="407" selection-start-column="102" selection-end-line="407" selection-end-column="102" />
+            <state relative-caret-position="294">
+              <caret line="384" column="175" lean-forward="false" selection-start-line="384" selection-start-column="175" selection-end-line="384" selection-end-column="175" />
               <folding>
                 <element signature="e#380#503#0" expanded="false" />
                 <element signature="e#549#663#0" expanded="false" />
@@ -53,9 +52,6 @@
                 <element signature="e#10498#11805#0" expanded="false" />
                 <element signature="e#11895#12247#0" expanded="false" />
                 <element signature="e#12286#12375#0" expanded="false" />
-                <element signature="e#19309#19392#0" expanded="false" />
-                <element signature="e#19480#19844#0" expanded="false" />
-                <element signature="e#19885#21737#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -306,7 +302,7 @@
       <window_info id="Dart Analysis" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3287037" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3287037" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3287037" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3287037" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3287037" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Flutter Outline" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Logcat" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3287037" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32980332" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -367,9 +363,6 @@
             <element signature="e#10498#11805#0" expanded="false" />
             <element signature="e#11895#12247#0" expanded="false" />
             <element signature="e#12286#12375#0" expanded="false" />
-            <element signature="e#19309#19392#0" expanded="false" />
-            <element signature="e#19480#19844#0" expanded="false" />
-            <element signature="e#19885#21737#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -392,9 +385,6 @@
             <element signature="e#10498#11805#0" expanded="false" />
             <element signature="e#11895#12247#0" expanded="false" />
             <element signature="e#12286#12375#0" expanded="false" />
-            <element signature="e#19309#19392#0" expanded="false" />
-            <element signature="e#19480#19844#0" expanded="false" />
-            <element signature="e#19885#21737#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -427,9 +417,6 @@
             <element signature="e#10498#11805#0" expanded="false" />
             <element signature="e#11895#12247#0" expanded="false" />
             <element signature="e#12286#12375#0" expanded="false" />
-            <element signature="e#19309#19392#0" expanded="false" />
-            <element signature="e#19480#19844#0" expanded="false" />
-            <element signature="e#19885#21737#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -462,9 +449,6 @@
             <element signature="e#10498#11805#0" expanded="false" />
             <element signature="e#11895#12247#0" expanded="false" />
             <element signature="e#12286#12375#0" expanded="false" />
-            <element signature="e#19309#19392#0" expanded="false" />
-            <element signature="e#19480#19844#0" expanded="false" />
-            <element signature="e#19885#21737#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -497,9 +481,6 @@
             <element signature="e#10498#11805#0" expanded="false" />
             <element signature="e#11895#12247#0" expanded="false" />
             <element signature="e#12286#12375#0" expanded="false" />
-            <element signature="e#19309#19392#0" expanded="false" />
-            <element signature="e#19480#19844#0" expanded="false" />
-            <element signature="e#19885#21737#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -540,9 +521,6 @@
             <element signature="e#10498#11805#0" expanded="false" />
             <element signature="e#11895#12247#0" expanded="false" />
             <element signature="e#12286#12375#0" expanded="false" />
-            <element signature="e#19309#19392#0" expanded="false" />
-            <element signature="e#19480#19844#0" expanded="false" />
-            <element signature="e#19885#21737#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -583,9 +561,6 @@
             <element signature="e#10498#11805#0" expanded="false" />
             <element signature="e#11895#12247#0" expanded="false" />
             <element signature="e#12286#12375#0" expanded="false" />
-            <element signature="e#19309#19392#0" expanded="false" />
-            <element signature="e#19480#19844#0" expanded="false" />
-            <element signature="e#19885#21737#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -631,8 +606,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/screens/match.dart">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="392">
-          <caret line="407" column="102" lean-forward="false" selection-start-line="407" selection-start-column="102" selection-end-line="407" selection-end-column="102" />
+        <state relative-caret-position="294">
+          <caret line="384" column="175" lean-forward="false" selection-start-line="384" selection-start-column="175" selection-end-line="384" selection-end-column="175" />
           <folding>
             <element signature="e#380#503#0" expanded="false" />
             <element signature="e#549#663#0" expanded="false" />
@@ -647,9 +622,6 @@
             <element signature="e#10498#11805#0" expanded="false" />
             <element signature="e#11895#12247#0" expanded="false" />
             <element signature="e#12286#12375#0" expanded="false" />
-            <element signature="e#19309#19392#0" expanded="false" />
-            <element signature="e#19480#19844#0" expanded="false" />
-            <element signature="e#19885#21737#0" expanded="false" />
           </folding>
         </state>
       </provider>

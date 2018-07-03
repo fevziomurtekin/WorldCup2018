@@ -351,7 +351,6 @@ class groupsList extends StatelessWidget{
           children: <Widget>[
             new Expanded(
                 child: new ListView.builder(
-                    padding: EdgeInsets.all(10.0),
                     itemCount: groups.length,
                     itemBuilder: (BuildContext context,int index){
                       return Column(
@@ -365,58 +364,43 @@ class groupsList extends StatelessWidget{
                           new Card(
                             child: new Container(
                               padding: EdgeInsets.all(20.0),
-                                child: new Column(
-                                  children: <Widget>[
-                                    new Row(
-                                      children: <Widget>[
-                                        new Image.network(_getCartoon(groups[index]["ordered_teams"][0]["fifa_code"]),width: 50.0,height: 50.0,),
-                                        new Padding(padding:EdgeInsets.fromLTRB(0.0, 0.0, 5.0, 0.0) ),
-                                        new Text("1.)",style: new TextStyle( fontWeight: FontWeight.bold,fontSize: 14.0), ),
-                                        new Padding(padding:EdgeInsets.fromLTRB(0.0, 0.0, 5.0, 0.0) ),
-                                        new Text(groups[index]["ordered_teams"][0]["country"]),
-                                        new Padding(padding:EdgeInsets.fromLTRB(0.0, 0.0, 5.0, 0.0) ),
-                                        new Text("Total games : ${groups[index]["ordered_teams"][0]["games_played"]} => ${groups[index]["ordered_teams"][0]["wins"]} win ${groups[index]["ordered_teams"][0]["losses"]} lost"),
-                                        new Padding(padding:EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 10.0) ),
-                                      ],
-                                    ),
-                                    new Row(
-                                      children: <Widget>[
-                                        new Image.network(_getCartoon(groups[index]["ordered_teams"][1]["fifa_code"]),width: 50.0,height: 50.0,),
-                                        new Padding(padding:EdgeInsets.fromLTRB(0.0, 0.0, 5.0, 0.0) ),
-                                        new Text("2.)",style: new TextStyle( fontWeight: FontWeight.bold,fontSize: 14.0), ),
-                                        new Padding(padding:EdgeInsets.fromLTRB(0.0, 0.0, 5.0, 0.0) ),
-                                        new Text(groups[index]["ordered_teams"][1]["country"]),
-                                        new Padding(padding:EdgeInsets.fromLTRB(0.0, 0.0, 5.0, 0.0) ),
-                                        new Text("Total games : ${groups[index]["ordered_teams"][1]["games_played"]} => ${groups[index]["ordered_teams"][1]["wins"]} win ${groups[index]["ordered_teams"][1]["losses"]} lost"),
-                                        new Padding(padding:EdgeInsets.fromLTRB(0.0, 0.0, 5.0, 0.0) ),
-                                      ],
-                                    ),
-                                    new Row(
-                                      children: <Widget>[
-                                        new Image.network(_getCartoon(groups[index]["ordered_teams"][2]["fifa_code"]),width: 50.0,height: 50.0,),
-                                        new Padding(padding:EdgeInsets.fromLTRB(0.0, 0.0, 5.0, 0.0) ),
-                                        new Text("3.)",style: new TextStyle( fontWeight: FontWeight.bold,fontSize: 14.0), ),
-                                        new Padding(padding:EdgeInsets.fromLTRB(0.0, 0.0, 5.0, 0.0) ),
-                                        new Text(groups[index]["ordered_teams"][2]["country"]),
-                                        new Padding(padding:EdgeInsets.fromLTRB(0.0, 0.0, 5.0, 0.0) ),
-                                        new Text("Total games : ${groups[index]["ordered_teams"][2]["games_played"]} => ${groups[index]["ordered_teams"][2]["wins"]} win ${groups[index]["ordered_teams"][2]["losses"]} lost"),
-                                        new Padding(padding:EdgeInsets.fromLTRB(0.0, 0.0, 5.0, 0.0) ),
-                                      ],
-                                    ),
-                                    new Row(
-                                      children: <Widget>[
-                                        new Image.network(_getCartoon(groups[index]["ordered_teams"][3]["fifa_code"]),width: 50.0,height: 50.0,),
-                                        new Padding(padding:EdgeInsets.fromLTRB(0.0, 0.0, 5.0, 0.0) ),
-                                        new Text("4.)",style: new TextStyle( fontWeight: FontWeight.bold,fontSize: 14.0), ),
-                                        new Padding(padding:EdgeInsets.fromLTRB(0.0, 0.0, 5.0, 0.0) ),
-                                        new Text(groups[index]["ordered_teams"][3]["country"]),
-                                        new Padding(padding:EdgeInsets.fromLTRB(0.0, 0.0, 5.0, 0.0) ),
-                                        new Text("Total games : ${groups[index]["ordered_teams"][3]["games_played"]} => ${groups[index]["ordered_teams"][3]["wins"]} win ${groups[index]["ordered_teams"][3]["losses"]} lost"),
-                                        new Padding(padding:EdgeInsets.fromLTRB(0.0, 0.0, 5.0, 0.0) ),
-                                      ],
-                                    ),
-                                  ],
-                                )
+                                child: new DataTable(
+                                    columns:<DataColumn>[
+                                      new DataColumn(label: new Text("Country",style: new TextStyle(fontWeight: FontWeight.bold,color: Colors.indigo),)),
+                                      new DataColumn(label: new Text("Point",style: new TextStyle(fontWeight: FontWeight.bold,color: Colors.indigo),)),
+                                      new DataColumn(label: new Text("Avarage",style: new TextStyle(fontWeight: FontWeight.bold,color: Colors.indigo),)),
+                                    ],
+                                    rows: <DataRow>[
+                                      new DataRow(
+                                          cells: <DataCell>[
+                                            new DataCell(new Text(groups[index]["ordered_teams"][0]["country"],style: new TextStyle(color: Colors.redAccent))),
+                                            new DataCell(new Text(groups[index]["ordered_teams"][0]["points"].toString(),style: new TextStyle(color: Colors.redAccent))),
+                                            new DataCell(new Text(groups[index]["ordered_teams"][0]["goal_differential"].toString(),style: new TextStyle(color: Colors.redAccent))),
+                                          ],
+                                      ),
+                                      new DataRow(
+                                        cells: <DataCell>[
+                                          new DataCell(new Text(groups[index]["ordered_teams"][1]["country"],style: new TextStyle(color: Colors.redAccent))),
+                                          new DataCell(new Text(groups[index]["ordered_teams"][1]["points"].toString(),style: new TextStyle(color: Colors.redAccent))),
+                                          new DataCell(new Text(groups[index]["ordered_teams"][1]["goal_differential"].toString(),style: new TextStyle(color: Colors.redAccent)gt)),
+                                        ],
+                                      ),
+                                      new DataRow(
+                                        cells: <DataCell>[
+                                          new DataCell(new Text(groups[index]["ordered_teams"][2]["country"])),
+                                          new DataCell(new Text(groups[index]["ordered_teams"][2]["points"].toString())),
+                                          new DataCell(new Text(groups[index]["ordered_teams"][2]["goal_differential"].toString())),
+                                        ],
+                                      ),
+                                      new DataRow(
+                                        cells: <DataCell>[
+                                          new DataCell(new Text(groups[index]["ordered_teams"][3]["country"])),
+                                          new DataCell(new Text(groups[index]["ordered_teams"][3]["points"].toString())),
+                                          new DataCell(new Text(groups[index]["ordered_teams"][3]["goal_differential"].toString())),
+                                        ],
+                                      ),
+                                    ],
+                                ),
                             ),
                           ),
                           new Padding(padding: EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 10.0)),
