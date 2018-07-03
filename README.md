@@ -9,9 +9,9 @@ https://worldcup.sfg.io API was used.
 # ScreenShots
 
 <b>Today Match</b> </br></br>
-<img src="https://github.com/fevziomurtekin/WorldCup2018/blob/master/screenshots/screenshots1.png" width="150" height="150" />
+<img src="https://github.com/fevziomurtekin/WorldCup2018/blob/master/screenshots/screenshots1.png" width="200" height="200" />
 </br></br>
 <b>Group Stage</b> </br></br>
-<img src="https://github.com/fevziomurtekin/WorldCup2018/blob/master/screenshots/screenshots2.png" width="150" height="150" />
+<img src="https://github.com/fevziomurtekin/WorldCup2018/blob/master/screenshots/screenshots2.png" width="200" height="200" />
 </br></br>
 <b>Teams</b> </br>
