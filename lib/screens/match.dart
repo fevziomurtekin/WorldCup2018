@@ -12,13 +12,11 @@ var hour = new DateFormat("hh:mm");
 
 Future<List> fetchMatch(http.Client client) async {
   final response = await client.get('https://worldcup.sfg.io/matches/today');
-
   return parseMatch(response.body);
 }
 
 Future<List> fetchTeams(http.Client client) async{
   final response = await client.get('https://worldcup.sfg.io/teams/');
-
   return parseTeam(response.body);
 }
 
@@ -32,6 +30,17 @@ List parseMatch(String responseBody) {
   return json.decode(responseBody);
 }
 
+Future<List> fetchGroup(http.Client client) async {
+  final response = await client.get('https://worldcup.sfg.io/teams/group_results');
+  return parseMatch(response.body);
+}
+
+List parseGroup(String responseBody) {
+  final parsed = json.decode(responseBody).cast<Map<String, dynamic>>();
+  return json.decode(responseBody);
+}
+
+
 class Match extends StatefulWidget{
   @override
   _Match createState() => new _Match();
@@ -44,12 +53,12 @@ class Details{
 class _Match extends State<Match>{
   String s;
   final Key todayPage = PageStorageKey('today');
-  final Key goalKingPage = PageStorageKey('goalking');
+  final Key GroupsPage = PageStorageKey('Groups');
   final Key teamPage = PageStorageKey('team');
 
   int currentTab = 0;
   Today todays;
-  GoalKing goalKing;
+  Groups groups;
   Team team;
   List<Widget> pages;
   Widget currentPage;
@@ -62,15 +71,15 @@ class _Match extends State<Match>{
       key:todayPage,
     );
 
-    goalKing=new GoalKing(
-      key: goalKingPage,
+    groups=new Groups(
+      key: GroupsPage,
     );
 
     team=new Team(
       key:teamPage,
     );
 
-    pages=[todays,goalKing,team];
+    pages=[todays,groups,team];
     currentPage = todays;
     super.initState();
   }
@@ -113,8 +122,8 @@ class _Match extends State<Match>{
                   fontSize: 14.0
                 ),)),
         new BottomNavigationBarItem(
-           icon: new Icon(Icons.person),
-            title: new Text("Goal King",
+           icon: new Icon(Icons.group_work),
+            title: new Text("Groups",
               style: new TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 14.0
@@ -254,37 +263,36 @@ class matchList extends StatelessWidget{
     );
   }
 
-  String _getCartoon(String code) {
-    switch(code){
-      case "BRA":
-        return "https://i.pinimg.com/originals/2a/3b/7a/2a3b7ad397aa17d969543c8bb5ab8ccb.png";
-      case "MEX":
-        return "https://i.pinimg.com/564x/3f/71/e4/3f71e486654bb183d8ee60765d270ac1.jpg";
-      case "BEL":
-        return "https://i.pinimg.com/564x/0c/19/ea/0c19eab28723aa22e48ceb6e484251d6.jpg";
-      case "JPN":
-        return "https://i.pinimg.com/564x/60/51/3f/60513ff09fd45b603059108ecc5f8a99.jpg";
-      case "URU":
-        return "https://i.pinimg.com/564x/2a/1a/58/2a1a5857f36c61b1c895703b42b0beb2.jpg";
-      case "FRA":
-        return "https://i.pinimg.com/originals/9f/a4/47/9fa4472bd94d7fce55690b8e13bd0897.png";
-      case "SWE":
-        return "https://i.pinimg.com/originals/94/a2/37/94a2372a216bf27dc1832ce7e1fd60c7.png";
-      case "SUI":
-        return "https://i.pinimg.com/564x/cc/f6/8b/ccf68b0d97babddaa9da138724329d1d.jpg";
-      case "COL":
-        return "https://i.pinimg.com/564x/d0/05/01/d00501bdd4a1aa91c9f5fb6c98a2959d.jpg";
-      case "RUS":
-        return "https://i.pinimg.com/564x/25/d0/aa/25d0aac623237fb43178ee84da9e7574.jpg";
-      case "CRO" :
-        return "https://i.pinimg.com/236x/a1/76/94/a176949b624c5bec51aa0378c48226c2.jpg" ;
-      case "ENG":
-        return "https://i.pinimg.com/originals/04/93/ca/0493cadecfe1d367082f642275c6e35e.png" ;
-    }
-    return "";
-  }
 }
-
+String _getCartoon(String code) {
+  switch(code){
+    case "BRA":
+      return "https://i.pinimg.com/originals/2a/3b/7a/2a3b7ad397aa17d969543c8bb5ab8ccb.png";
+    case "MEX":
+      return "https://i.pinimg.com/564x/3f/71/e4/3f71e486654bb183d8ee60765d270ac1.jpg";
+    case "BEL":
+      return "https://i.pinimg.com/564x/0c/19/ea/0c19eab28723aa22e48ceb6e484251d6.jpg";
+    case "JPN":
+      return "https://i.pinimg.com/564x/60/51/3f/60513ff09fd45b603059108ecc5f8a99.jpg";
+    case "URU":
+      return "https://i.pinimg.com/564x/2a/1a/58/2a1a5857f36c61b1c895703b42b0beb2.jpg";
+    case "FRA":
+      return "https://i.pinimg.com/originals/9f/a4/47/9fa4472bd94d7fce55690b8e13bd0897.png";
+    case "SWE":
+      return "https://i.pinimg.com/originals/94/a2/37/94a2372a216bf27dc1832ce7e1fd60c7.png";
+    case "SUI":
+      return "https://i.pinimg.com/564x/cc/f6/8b/ccf68b0d97babddaa9da138724329d1d.jpg";
+    case "COL":
+      return "https://i.pinimg.com/564x/d0/05/01/d00501bdd4a1aa91c9f5fb6c98a2959d.jpg";
+    case "RUS":
+      return "https://i.pinimg.com/564x/25/d0/aa/25d0aac623237fb43178ee84da9e7574.jpg";
+    case "CRO" :
+      return "https://i.pinimg.com/236x/a1/76/94/a176949b624c5bec51aa0378c48226c2.jpg" ;
+    case "ENG":
+      return "https://i.pinimg.com/originals/04/93/ca/0493cadecfe1d367082f642275c6e35e.png" ;
+  }
+  return "";
+}
 
 class TodayState extends State<Today>{
   @override
@@ -303,60 +311,115 @@ class TodayState extends State<Today>{
   }
 }
 
-class GoalKing extends StatefulWidget{
+class Groups extends StatefulWidget{
 
-  GoalKing({Key key}): super(key: key);
+  Groups({Key key}): super(key: key);
 
-  GoalKingState createState() => GoalKingState();
+  GroupsState createState() => GroupsState();
 }
 
-class GoalKingState extends State<Today>{
+class GroupsState extends State<Groups>{
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
     return FutureBuilder<List>(
-      future: fetchMatch(http.Client()), // değişecek.
+      future: fetchGroup(http.Client()), // değişecek.
       builder: (context, snapshot) {
         if (snapshot.hasError) print(snapshot.error);
 
         return snapshot.hasData
-            ? goalkingList(goalkings: snapshot.data)
+            ? groupsList(groups: snapshot.data)
             : Center(child: CircularProgressIndicator());
       },
     );
   }
 }
 
-class goalkingList extends StatelessWidget{
+class groupsList extends StatelessWidget{
 
-  final List goalkings;
-  goalkingList({Key key, this.goalkings}) : super(key: key);
+  final List groups;
+  groupsList({Key key, this.groups}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: new EdgeInsets.fromLTRB(25.0,15.0,0.0,0.0),
+      padding: new EdgeInsets.fromLTRB(0.0,15.0,0.0,0.0),
       child:new SizedBox(
         width: double.infinity,
         child: new Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            new Text(formated.format(now),
-              style: TextStyle(
-                  fontSize: 20.0,
-                  fontWeight: FontWeight.bold,color: Colors.black),),
             new Expanded(
                 child: new ListView.builder(
                     padding: EdgeInsets.all(10.0),
-                    itemCount: goalkings.length,
+                    itemCount: groups.length,
                     itemBuilder: (BuildContext context,int index){
-                      return Row(
+                      return Column(
                         children: <Widget>[
+                          new Text(groups[index]["letter"] ,softWrap: true,
+                            style: new TextStyle(
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold
+                            ),),
+                          new Padding(padding: EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 10.0)),
                           new Card(
                             child: new Container(
                               padding: EdgeInsets.all(20.0),
+                                child: new Column(
+                                  children: <Widget>[
+                                    new Row(
+                                      children: <Widget>[
+                                        new Image.network(_getCartoon(groups[index]["ordered_teams"][0]["fifa_code"]),width: 50.0,height: 50.0,),
+                                        new Padding(padding:EdgeInsets.fromLTRB(0.0, 0.0, 5.0, 0.0) ),
+                                        new Text("1.)",style: new TextStyle( fontWeight: FontWeight.bold,fontSize: 14.0), ),
+                                        new Padding(padding:EdgeInsets.fromLTRB(0.0, 0.0, 5.0, 0.0) ),
+                                        new Text(groups[index]["ordered_teams"][0]["country"]),
+                                        new Padding(padding:EdgeInsets.fromLTRB(0.0, 0.0, 5.0, 0.0) ),
+                                        new Text("Total games : ${groups[index]["ordered_teams"][0]["games_played"]} => ${groups[index]["ordered_teams"][0]["wins"]} win ${groups[index]["ordered_teams"][0]["losses"]} lost"),
+                                        new Padding(padding:EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 10.0) ),
+                                      ],
+                                    ),
+                                    new Row(
+                                      children: <Widget>[
+                                        new Image.network(_getCartoon(groups[index]["ordered_teams"][1]["fifa_code"]),width: 50.0,height: 50.0,),
+                                        new Padding(padding:EdgeInsets.fromLTRB(0.0, 0.0, 5.0, 0.0) ),
+                                        new Text("2.)",style: new TextStyle( fontWeight: FontWeight.bold,fontSize: 14.0), ),
+                                        new Padding(padding:EdgeInsets.fromLTRB(0.0, 0.0, 5.0, 0.0) ),
+                                        new Text(groups[index]["ordered_teams"][1]["country"]),
+                                        new Padding(padding:EdgeInsets.fromLTRB(0.0, 0.0, 5.0, 0.0) ),
+                                        new Text("Total games : ${groups[index]["ordered_teams"][1]["games_played"]} => ${groups[index]["ordered_teams"][1]["wins"]} win ${groups[index]["ordered_teams"][1]["losses"]} lost"),
+                                        new Padding(padding:EdgeInsets.fromLTRB(0.0, 0.0, 5.0, 0.0) ),
+                                      ],
+                                    ),
+                                    new Row(
+                                      children: <Widget>[
+                                        new Image.network(_getCartoon(groups[index]["ordered_teams"][2]["fifa_code"]),width: 50.0,height: 50.0,),
+                                        new Padding(padding:EdgeInsets.fromLTRB(0.0, 0.0, 5.0, 0.0) ),
+                                        new Text("3.)",style: new TextStyle( fontWeight: FontWeight.bold,fontSize: 14.0), ),
+                                        new Padding(padding:EdgeInsets.fromLTRB(0.0, 0.0, 5.0, 0.0) ),
+                                        new Text(groups[index]["ordered_teams"][2]["country"]),
+                                        new Padding(padding:EdgeInsets.fromLTRB(0.0, 0.0, 5.0, 0.0) ),
+                                        new Text("Total games : ${groups[index]["ordered_teams"][2]["games_played"]} => ${groups[index]["ordered_teams"][2]["wins"]} win ${groups[index]["ordered_teams"][2]["losses"]} lost"),
+                                        new Padding(padding:EdgeInsets.fromLTRB(0.0, 0.0, 5.0, 0.0) ),
+                                      ],
+                                    ),
+                                    new Row(
+                                      children: <Widget>[
+                                        new Image.network(_getCartoon(groups[index]["ordered_teams"][3]["fifa_code"]),width: 50.0,height: 50.0,),
+                                        new Padding(padding:EdgeInsets.fromLTRB(0.0, 0.0, 5.0, 0.0) ),
+                                        new Text("4.)",style: new TextStyle( fontWeight: FontWeight.bold,fontSize: 14.0), ),
+                                        new Padding(padding:EdgeInsets.fromLTRB(0.0, 0.0, 5.0, 0.0) ),
+                                        new Text(groups[index]["ordered_teams"][3]["country"]),
+                                        new Padding(padding:EdgeInsets.fromLTRB(0.0, 0.0, 5.0, 0.0) ),
+                                        new Text("Total games : ${groups[index]["ordered_teams"][3]["games_played"]} => ${groups[index]["ordered_teams"][3]["wins"]} win ${groups[index]["ordered_teams"][3]["losses"]} lost"),
+                                        new Padding(padding:EdgeInsets.fromLTRB(0.0, 0.0, 5.0, 0.0) ),
+                                      ],
+                                    ),
+                                  ],
+                                )
                             ),
-                          )
+                          ),
+                          new Padding(padding: EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 10.0)),
                         ],
                       );
                     }))
@@ -427,7 +490,6 @@ class teamList extends StatelessWidget{
                                     ],
                                   ), new Row(
                                     children: <Widget>[
-
                                     ],
                                   )
 
