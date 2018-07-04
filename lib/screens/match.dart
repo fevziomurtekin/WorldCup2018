@@ -16,7 +16,7 @@ Future<List> fetchMatch(http.Client client) async {
 }
 
 Future<List> fetchTeams(http.Client client) async{
-  final response = await client.get('https://worldcup.sfg.io/teams/');
+  final response = await client.get('https://worldcup.sfg.io/matches/?by=total_goals');
   return parseTeam(response.body);
 }
 
@@ -129,8 +129,8 @@ class _Match extends State<Match>{
                   fontSize: 14.0
               ),)),
         new BottomNavigationBarItem(
-           icon: new Icon(Icons.people),
-            title: new Text("Teams",
+           icon: new Icon(Icons.calendar_view_day),
+            title: new Text("All Match",
               style: new TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 14.0
@@ -438,6 +438,7 @@ class TeamState extends State<Team>{
     );
   }
 }
+
 class teamList extends StatelessWidget{
 
   final List teams;
@@ -458,6 +459,8 @@ class teamList extends StatelessWidget{
                     itemCount: teams.length,
                     itemBuilder: (BuildContext context,int index){
                       return Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
                           new Card(
                             child: new Container(
@@ -467,16 +470,64 @@ class teamList extends StatelessWidget{
                                   new Column(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: <Widget>[
-                                      new Text(teams[index]["country"],style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          color: Colors.black)
+                                      new Row(
+                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        children: <Widget>[
+                                          new Text(teams[index]["stage_name"],style: new TextStyle(fontWeight: FontWeight.bold),)
+                                        ],
+                                      ),
+                                      new Row(
+                                        children: <Widget>[
+                                          new Image.network("http://icons.iconarchive.com/icons/aha-soft/standard-city/256/stadium-icon.png",height: 30.0 ,width:30.0 ,),
+                                          new Padding(padding: EdgeInsets.fromLTRB(10.0,0.0,0.0,0.0)),
+                                          new Text(teams[index]["location"],style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              color: Colors.indigo),)
+                                        ],
+                                      ),
+                                      new Row(
+                                        children: <Widget>[
+                                          new Text("${teams[index]["weather"]["temp_celsius"].toString()} °C",style: new TextStyle(color: Colors.black)),
+                                          new Padding(padding: EdgeInsets.fromLTRB(2.0,0.0,0.0,0.0)),
+                                          new Image.network(getWeather(teams[index]["weather"]["description"]),height:30.0,width: 30.0,)
+                                        ],
+                                      ),
+                                      new Row(
+                                        children: <Widget>[
+                                          new Row(
+                                            mainAxisAlignment: MainAxisAlignment.start,
+                                            children: <Widget>[
+                                              new Image.network("https://cdn.countryflags.com/thumbs/${(teams[index]["home_team_country"].toString()).toLowerCase()}/flag-800.png",height: 35.0,width: 35.0,),
+                                              new Padding(padding: EdgeInsets.fromLTRB(5.0, 0.0, 0.0, 0.0)),
+                                              new Text(teams[index]["home_team_country"],style: new TextStyle(fontWeight: FontWeight.normal),),
+                                              new Padding(padding: EdgeInsets.fromLTRB(5.0, 0.0, 0.0, 0.0)),
+                                            ],
+                                          ),
+                                          new Row(
+                                            mainAxisAlignment: MainAxisAlignment.center,
+                                            children: <Widget>[
+                                              new Text(teams[index]["home_team"]["goals"].toString(),style: new TextStyle(fontWeight: FontWeight.bold),),
+                                              new Padding(padding: EdgeInsets.fromLTRB(5.0, 0.0, 0.0, 0.0)),
+                                              new Text("-",style: new TextStyle(fontWeight: FontWeight.normal),),
+                                              new Padding(padding: EdgeInsets.fromLTRB(5.0, 0.0, 0.0, 0.0)),
+                                              new Text(teams[index]["away_team"]["goals"].toString(),style: new TextStyle(fontWeight: FontWeight.bold),),
+                                            ],
+                                          ),
+                                          new Row(
+                                            mainAxisAlignment: MainAxisAlignment.end,
+                                            children: <Widget>[
+                                              new Padding(padding: EdgeInsets.fromLTRB(5.0, 0.0, 0.0, 0.0)),
+                                              new Text(teams[index]["away_team_country"],style: new TextStyle(fontWeight: FontWeight.normal),),
+                                              new Padding(padding: EdgeInsets.fromLTRB(5.0, 0.0, 0.0, 0.0)),
+                                              new Image.network("https://cdn.countryflags.com/thumbs/${(teams[index]["away_team_country"].toString()).toLowerCase()}/flag-800.png",height: 35.0,width: 35.0,),
+                                              new Padding(padding: EdgeInsets.fromLTRB(5.0, 0.0, 0.0, 0.0)),
+                                            ],
+                                          )
+                                        ],
                                       )
+                                     
                                     ],
-                                  ), new Row(
-                                    children: <Widget>[
-                                    ],
-                                  )
-
+                                  ),
                                 ],
                               ),
                             ),
@@ -489,6 +540,22 @@ class teamList extends StatelessWidget{
         ),
       ),
     );
+  }
+
+  String getWeather(team) {
+    switch(team){
+      case "Sunny":
+        return "https://www.iconspng.com/images/weather-icon-sunny/weather-icon-sunny.jpg";
+      case "Partly Cloudy":
+        return "http://icon-park.com/imagefiles/simple_weather_icons_partly_cloudy.png";
+      case "Cloudy":
+        return "http://downloadicons.net/sites/default/files/blue-cloudy-symbol-icon-38700.png";
+      case "Partly Cloudy Night":
+        return "http://www.free-icons-download.net/images/sunny-to-partly-cloudy-at-night-icons-38692.png";
+      case "Clear Night":
+        return "https://previews.123rf.com/images/puruan/puruan1702/puruan170202260/71632481-nature-forecast-clear-night-icon-in-color-.jpg";
+
+    }
   }
 
 }
