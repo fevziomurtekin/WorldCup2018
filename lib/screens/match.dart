@@ -382,22 +382,22 @@ class groupsList extends StatelessWidget{
                                         cells: <DataCell>[
                                           new DataCell(new Text(groups[index]["ordered_teams"][1]["country"],style: new TextStyle(color: Colors.redAccent))),
                                           new DataCell(new Text(groups[index]["ordered_teams"][1]["points"].toString(),style: new TextStyle(color: Colors.redAccent))),
-                                          new DataCell(new Text(groups[index]["ordered_teams"][1]["goal_differential"].toString(),style: new TextStyle(color: Colors.redAccent)gt)),
+                                          new DataCell(new Text(groups[index]["ordered_teams"][1]["goal_differential"].toString(),style: new TextStyle(color: Colors.redAccent))),
                                         ],
                                       ),
                                       new DataRow(
-                                        cells: <DataCell>[
-                                          new DataCell(new Text(groups[index]["ordered_teams"][2]["country"])),
-                                          new DataCell(new Text(groups[index]["ordered_teams"][2]["points"].toString())),
-                                          new DataCell(new Text(groups[index]["ordered_teams"][2]["goal_differential"].toString())),
-                                        ],
+                                          cells:<DataCell>[
+                                            new DataCell(new Text(groups[index]["ordered_teams"][2]["country"],)),
+                                            new DataCell(new Text(groups[index]["ordered_teams"][2]["points"].toString())),
+                                            new DataCell(new Text(groups[index]["ordered_teams"][2]["goal_differential"].toString(),)),
+                                          ],
                                       ),
                                       new DataRow(
-                                        cells: <DataCell>[
-                                          new DataCell(new Text(groups[index]["ordered_teams"][3]["country"])),
-                                          new DataCell(new Text(groups[index]["ordered_teams"][3]["points"].toString())),
-                                          new DataCell(new Text(groups[index]["ordered_teams"][3]["goal_differential"].toString())),
-                                        ],
+                                          cells: <DataCell>[
+                                            new DataCell(new Text(groups[index]["ordered_teams"][3]["country"],)),
+                                            new DataCell(new Text(groups[index]["ordered_teams"][3]["points"].toString(),)),
+                                            new DataCell(new Text(groups[index]["ordered_teams"][3]["goal_differential"].toString(),)),
+                                          ],
                                       ),
                                     ],
                                 ),
