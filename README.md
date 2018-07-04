@@ -11,7 +11,7 @@ https://worldcup.sfg.io API was used.
   <tr>
     <th><b>Today Match</b> </th>
     <th>Group Stage</th>
-    <th><b>Teams</b> </b></th>
+    <th><b>All Match</b> </b></th>
   </tr>
   <tr>
     <td>
@@ -20,7 +20,7 @@ https://worldcup.sfg.io API was used.
       <img src="https://github.com/fevziomurtekin/WorldCup2018/blob/master/screenshots/screenshots2.png" width="200" height="200" />
     </td>
    <td>
-      <img src="https://github.com/fevziomurtekin/WorldCup2018/blob/master/screenshots/screenshots3.png" width="200" height="200" />
+      <img src="https://github.com/fevziomurtekin/WorldCup2018/blob/master/screenshots/Screenshots3.png" width="200" height="200" />
     </td>
   </tr>
 </table>
